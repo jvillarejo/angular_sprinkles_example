@@ -7,5 +7,5 @@ gem 'uglifier', '>= 1.3.0'
 gem 'angularjs-rails'
 gem 'angular_sprinkles'
 
-gem 'pry', group: :development
+gem 'byebug', group: :development
 gem 'spring', group: :development

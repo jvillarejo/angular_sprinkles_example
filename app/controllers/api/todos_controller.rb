@@ -10,10 +10,22 @@ class Api::TodosController < ApplicationController
     render json: todo
   end
 
+  def all_completed
+    todos = Todo.all
+    todos.update_all(complete: true)
+    render json: todos
+  end
+
   def destroy
     todo = Todo.find(params[:id])
     todo.destroy
     render json: todo
+  end
+
+  def destroy_many
+    todos = Todo.where(id: params[:ids])
+    todos.destroy_all
+    render json: todos
   end
 
   private
@@ -23,6 +35,6 @@ class Api::TodosController < ApplicationController
   end
 
   def update_params
-    params.require(:todo).permit(:complete)
+    params.require(:todo).permit(:complete, :title)
   end
 end

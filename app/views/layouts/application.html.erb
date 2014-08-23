@@ -8,26 +8,10 @@
   </head>
   <body>
     <section id="todoapp">
-      <header id="header">
-        <h1>todos</h1>
-        <%= directive(:todo_form) %>
-      </header>
-      <section ng-show="<%= @todos.bind %>.length > 0" id="main">
-        <input id="toggle-all" type="checkbox">
-        <label for="toggle-all">Mark all as complete</label>
-        <%= directive(:todo_list, { todos: @todos.bind }) %>
-      </section>
-      <footer ng-show="<%= @todos.bind %>.length > 0" id="footer">
-        <span id="todo-count"><strong ng-bind="<%= bindFunc(:tasks_incomplete, @todos.bind) %>"></strong> item left</span>
-        <button ng-hide="<%= bindFunc(:tasks_completed, @todos.bind) %> === 0" id="clear-completed">Clear completed ({{<%= bindFunc(:tasks_completed, @todos.bind) %>}})</button>
-      </footer>
+      <%= yield %>
     </section>
-    <footer id="info">
-      <p>Double-click to edit a todo</p>
-      <p>Created by <a href="http://www.brewhouse.io">Brewhouse Software</a></p>
-      <p>Using <a href="http://www.github.com/BrewhouseTeam/angular_sprinkles">Angular Sprinkles</a></p>
-      <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-    </footer>
+
+    <%= render partial: 'layouts/footer' %>
 
     <%= yield :sprinkles %>
     <%= javascript_include_tag 'application' %>

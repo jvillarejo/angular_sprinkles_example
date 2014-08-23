@@ -1,0 +1,20 @@
+<header id="header">
+  <h1>todos</h1>
+  <%= directive(:todo_form) %>
+</header>
+<section ng-show="<%= @todos.bind %>.length > 0" id="main">
+  <input
+    ng-click="<%= bind_service(:mark_all_as_completed, @todos.bind) %>"
+    id="toggle-all"
+    type="checkbox">
+  <label for="toggle-all">Mark all as complete</label>
+  <%= directive(:todo_list, { todos: @todos.bind }) %>
+</section>
+<footer ng-show="<%= @todos.bind %>.length > 0" id="footer">
+  <span id="todo-count"><strong ng-bind="<%= bind_service(:tasks_incomplete, @todos.bind) %>"></strong> item left</span>
+  <button ng-click="<%= bind_service(:clear_completed, @todos.bind) %>"
+          ng-hide="<%= bind_service(:tasks_completed, @todos.bind) %> === 0"
+          id="clear-completed">
+    Clear completed ({{<%= bind_service(:tasks_completed, @todos.bind) %>}})
+  </button>
+</footer>

@@ -1,4 +1,10 @@
 sprinkles.directive('todoList', function ($http) {
+  function pushUpdate (todo) {
+    $http.put('/api/todos/' + todo.id, { todo: todo }).then(function (response) {
+      todo = response.data;
+    });
+  }
+
   return {
     restrict: 'A',
     scope: {
@@ -6,22 +12,26 @@ sprinkles.directive('todoList', function ($http) {
     },
     template:
       '<ul id="todo-list">' +
-        '<li ng-repeat="todo in todos track by $index" ng-class="{ completed: todo.complete }">' +
+        '<li ng-repeat="todo in todos track by $index" ng-class="{ completed: todo.complete, editing: todo.editing }">' +
           '<div class="view">' +
             '<input class="toggle" type="checkbox" ng-model="todo.complete" ng-click="complete(todo)">' +
-            '<label ng-bind="todo.title"></label>' +
+            '<label ng-bind="todo.title" ng-dblclick="todo.editing = true"></label>' +
             '<button ng-click="destroy(todo)" class="destroy"></button>' +
           '</div>' +
-          '<input class="edit" ng-model="todo.title">' +
+          '<form ng-submit="changeTitle(todo)">' +
+            '<input class="edit" ng-model="todo.title" ng-blur="changeTitle(todo)" />' +
+          '</form>' +
         '</li>' +
       '</ul>',
     link: function (scope) {
+      scope.changeTitle = function (todo) {
+        todo.editing = false;
+        pushUpdate(todo);
+      };
+
       scope.complete = function (todo) {
         todo.complete = !todo.complete;
-
-        $http.put('/api/todos/' + todo.id, { todo: todo }).then(function (response) {
-          todo = response.data;
-        });
+        pushUpdate(todo);
       };
 
       scope.destroy = function (todo) {
