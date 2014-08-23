@@ -1,0 +1,5 @@
+<div>
+  Tasks completed: <span ng-bind="<%= bindFunc(:tasks_completed, @todos.bind) %>"></span>
+</div>
+<%= directive(:todo_form) %>
+<%= directive(:todo_list, { todos: @todos.bind }) %>
