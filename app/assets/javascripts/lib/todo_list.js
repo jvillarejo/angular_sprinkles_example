@@ -1,4 +1,4 @@
-sprinkles.directive('todoList', function ($http) {
+sprinkles.directive('todoList', ['$http', function ($http) {
   function pushUpdate (todo) {
     $http.put('/api/todos/' + todo.id, { todo: todo }).then(function (response) {
       todo = response.data;
@@ -47,4 +47,4 @@ sprinkles.directive('todoList', function ($http) {
       });
     }
   }
-});
+}]);

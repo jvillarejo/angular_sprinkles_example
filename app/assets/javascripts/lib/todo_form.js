@@ -1,4 +1,4 @@
-sprinkles.directive('todoForm', function ($rootScope, $http) {
+sprinkles.directive('todoForm', ['$rootScope', '$http', function ($rootScope, $http) {
   return {
     restrict: 'A',
     scope: true,
@@ -18,4 +18,4 @@ sprinkles.directive('todoForm', function ($rootScope, $http) {
       };
     }
   }
-});
+}]);
