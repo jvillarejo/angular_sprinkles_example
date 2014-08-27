@@ -27,7 +27,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
-    angular_sprinkles (0.0.3)
+    angular_sprinkles (0.0.4)
       actionview
       angularjs-rails
       rails
