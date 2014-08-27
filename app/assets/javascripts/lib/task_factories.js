@@ -1,4 +1,4 @@
-sprinkles.service('tasks_completed', function () {
+sprinkles.service('tasks_completed', [function () {
   return function (todos) {
     var completed = todos.filter(function (todo) {
       return todo.complete;
@@ -6,15 +6,15 @@ sprinkles.service('tasks_completed', function () {
 
     return completed.length;
   };
-});
+}]);
 
-sprinkles.service('tasks_incomplete', function (tasks_completed) {
+sprinkles.service('tasks_incomplete', ['tasks_completed', function (tasks_completed) {
   return function (todos) {
     return todos.length - tasks_completed(todos);
   };
-});
+}]);
 
-sprinkles.service('mark_all_as_completed', function ($http) {
+sprinkles.service('mark_all_as_completed', ['$http', function ($http) {
   return function (todos) {
     todos.forEach(function (todo) {
       todo.complete = true;
@@ -22,9 +22,9 @@ sprinkles.service('mark_all_as_completed', function ($http) {
 
     $http.put('/api/todos/all_completed');
   };
-});
+}]);
 
-sprinkles.service('clear_completed', function ($http) {
+sprinkles.service('clear_completed', ['$http', function ($http) {
   return function (todos) {
     var completed = todos
       .filter(function (todo) {
@@ -42,4 +42,4 @@ sprinkles.service('clear_completed', function ($http) {
           });
         });
   };
-});
+}]);
