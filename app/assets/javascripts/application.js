@@ -14,8 +14,3 @@
 //= require angular_sprinkles
 //= require_self
 //= require_tree .
-
-sprinkles.config(['$httpProvider', function ($httpProvider) {
-  var csrfToken = document.querySelector('meta[name=csrf-token]').content;
-  $httpProvider.defaults.headers.common['X-CSRF-Token'] = csrfToken;
-}]);
