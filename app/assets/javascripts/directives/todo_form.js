@@ -1,11 +1,9 @@
 sprinkles.directive('todoForm', ['$rootScope', '$http', function ($rootScope, $http) {
   return {
     restrict: 'A',
-    scope: true,
+    transclude: true,
     template:
-      '<form ng-submit="submitForm()">' +
-        '<input type="text" ng-model="todo.title" id="new-todo" placeholder="What needs to be done?" autofocus>' +
-      '</form>',
+      '<form ng-submit="submitForm()" ng-transclude></form>',
     link: function (scope) {
       scope.todo = { title: '', complete: false };
 

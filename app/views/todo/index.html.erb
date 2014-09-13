@@ -2,8 +2,12 @@
 
   <h1>todos</h1>
 
-  <%= directive(:todo_form) %>
-
+  <%= directive(:todo_form) do %>
+    <%= text_field_tag :title, '',
+      placeholder: "What needs to be done?",
+      id: 'new-todo',
+      data: { ng_model: "todo.title" } %>
+  <% end %>
 </header>
 
 <section ng-show="<%= @todos.bind %>.length > 0" id="main">
