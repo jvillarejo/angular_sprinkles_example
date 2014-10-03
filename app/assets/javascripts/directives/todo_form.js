@@ -8,7 +8,7 @@ sprinkles.directive('todoForm', ['$rootScope', '$http', function ($rootScope, $h
       scope.todo = { title: '', complete: false };
 
       scope.submitForm = function () {
-        $http.post('/api/todos', { todo: scope.todo }).then(function (response) {
+        $http.post('/todos.json', { todo: scope.todo }).then(function (response) {
           $rootScope.$broadcast('todo:new', response.data);
         });
 

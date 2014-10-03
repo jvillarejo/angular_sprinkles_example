@@ -4,6 +4,6 @@ sprinkles.service('markAllAsCompleted', ['$http', function ($http) {
       todo.complete = true;
     });
 
-    $http.put('/api/todos/all_completed');
+    $http.put('/todos/all_completed.json');
   };
 }]);

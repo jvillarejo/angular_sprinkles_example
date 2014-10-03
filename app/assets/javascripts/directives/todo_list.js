@@ -1,6 +1,6 @@
 sprinkles.directive('todoList', ['$http', function ($http) {
   function pushUpdate (todo) {
-    $http.put('/api/todos/' + todo.id, { todo: todo }).then(function (response) {
+    $http.put('/todos/' + todo.id + '.json', { todo: todo }).then(function (response) {
       todo = response.data;
     });
   }
@@ -37,7 +37,7 @@ sprinkles.directive('todoList', ['$http', function ($http) {
       scope.destroy = function (todo) {
         var index = scope.todos.indexOf(todo);
 
-        $http.delete('/api/todos/' + todo.id).then(function (response) {
+        $http.delete('/todos/' + todo.id + '.json').then(function (response) {
           scope.todos.splice(index, 1);
         });
       };
