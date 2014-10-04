@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :todos do
     collection do 
-      delete :destroy_many
+      delete :destroy_completed
       put :all_completed
     end
   end

@@ -30,11 +30,11 @@ class TodosController < ApplicationController
     respond_with(@todo)
   end
 
-  def destroy_many
-    @todos = Todo.where(id: params[:ids])
-    
+  def destroy_completed
+    @todos = Todo.where(complete: true)
+
     @todos.destroy_all
-    
+
     respond_with(@todos)
   end
 

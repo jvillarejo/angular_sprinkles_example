@@ -3,12 +3,9 @@ sprinkles.service('clearCompleted', ['$http', function ($http) {
     var completed = todos
       .filter(function (todo) {
         return todo.complete;
-      }),
-      ids = completed.map(function (todo) {
-        return todo.id;
       });
 
-      $http.delete('/todos/destroy_many.json', { ids: ids })
+      $http.delete('/todos/destroy_completed.json')
         .then(function (response) {
           completed.forEach(function (todo) {
             var index = todos.indexOf(todo);

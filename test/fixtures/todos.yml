@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  complete: false
+  title: Eat dinner
+  complete: true
 
 two:
-  title: MyString
+  title: Read Book
+  complete: true
+
+three:
+  title: Sleep
+  complete: true
+
+incomplete:
+  title: Study
   complete: false
